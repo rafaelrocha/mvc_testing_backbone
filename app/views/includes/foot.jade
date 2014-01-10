@@ -1,3 +1,10 @@
+//Backbone
+script(type='text/javascript', src='/lib/todomvc-common/base.js')
+script(type='text/javascript', src='/lib/jquery/jquery.js')
+script(type='text/javascript', src='/lib/underscore/underscore.js')
+script(type='text/javascript', src='/lib/backbone/backbone.js')
+script(type='text/javascript', src='/lib/backbone.localStorage/backbone.localStorage.js')
+
 //AngularJS
 script(type='text/javascript', src='/lib/angular/angular.js')
 script(type='text/javascript', src='/lib/angular-cookies/angular-cookies.js')
@@ -24,6 +31,14 @@ script(type='text/javascript', src='/js/controllers/articles.js')
 script(type='text/javascript', src='/js/controllers/index.js')
 script(type='text/javascript', src='/js/controllers/header.js')
 script(type='text/javascript', src='/js/init.js')
+
+
+script(type='text/javascript', src='/js/models/todo.js')
+script(type='text/javascript', src='/js/collections/todos.js')
+script(type='text/javascript', src='/js/views/todo-view.js')
+script(type='text/javascript', src='/js/views/app-view.js')
+script(type='text/javascript', src='/js/routers/router.js')
+script(type='text/javascript', src='/js/app_backbone.js')
 
 if (process.env.NODE_ENV == 'development')
     //Livereload script rendered
