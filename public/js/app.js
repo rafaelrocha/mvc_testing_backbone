@@ -1,6 +1,12 @@
-'use strict';
+/*global $ */
+/*jshint unused:false */
+var app = app || {};
+var ENTER_KEY = 13;
+var ESC_KEY = 27;
 
-angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles']);
+$(function () {
+        'use strict';
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
+        // kick things off by creating the `App`
+        new app.AppView();
+});
