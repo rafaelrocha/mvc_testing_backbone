@@ -17,34 +17,19 @@ block content
       <input type="text"/>
     </div>
     <div>
-      <a href="#question" class="start">Start</a>
+      <a href="#question" id="start">Start</a>
     </div>
 
   script#question-template(type="text/template").
-    <h2>Question 1</h2>
+    <h2>Pergunta <%=currentQuestionIndex%> </h2>
     <div>
-      <p>Blahblahblah Blahblahblah Blahblahblah?.</p>
-      <label>
-        <input type="checkbox">option one</input>
-        Name
-      </label>
-      <label>
-        <input type="checkbox">option one</input>
-        Name
-      </label>
-      <label>
-        <input type="checkbox">option one</input>
-        Name
-      </label>
-      <label>
-        <input type="checkbox">option one</input>
-        Name
-      </label>
-      <label>
-        <input type="checkbox">option one</input>
-        Name
-      </label>
+      <p><%= description %></p>
+      <% _.each(options.models, function(option) { %>
+        <label>
+          <input type="checkbox"/><%=option.get("description")%>
+        </label>
+      <% }); %>
     </div>
     <div>
-      <button class="start">Next</button>
+      <button id="next">Next</button>
     </div>
