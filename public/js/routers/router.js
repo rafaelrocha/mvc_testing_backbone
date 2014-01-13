@@ -4,23 +4,21 @@ var app = app || {};
 (function () {
   'use strict';
 
-  // Todo Router
-  // ----------
-  var TodoRouter = Backbone.Router.extend({
-    routes: {
-      '*filter': 'setFilter'
-    },
+  app.Router = Backbone.Router.extend({
+      routes: {
+          '': 'index',
+          'question': 'question'
+      },
 
-    setFilter: function (param) {
-	    // Set the current filter to be used
-	    app.TodoFilter = param || '';
+      index: function(){
+          new app.Views.QuizApp();
+      },
 
-	    // Trigger a collection filter event, causing hiding/unhiding
-	    // of Todo view items
-	    app.todos.trigger('filter');
-    }
+      question: function(){
+          new app.Views.Question();
+      }
   });
 
-  app.TodoRouter = new TodoRouter();
+  new app.Router;
   Backbone.history.start();
 })();

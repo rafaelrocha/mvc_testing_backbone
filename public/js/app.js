@@ -8,5 +8,9 @@ $(function () {
         'use strict';
 
         // kick things off by creating the `App`
-        new app.AppView();
+        //new app.Views.QuizApp();
+
+        window.App = app
+
+				
 });
