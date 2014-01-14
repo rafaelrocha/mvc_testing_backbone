@@ -37,7 +37,23 @@ block content
     </div>
 
   script#result-template(type="text/template").
-    <h2>Errou tudo!</h2>
-    <div>aaasd</div>
-    <div>aaasd</div>
-    <div>aaasd</div>
+    <h2>Result!</h2>
+    <% _.each(answeredQuestions, function(question) { %>
+    <div>
+      <p><%= question.get("description") %></p>
+
+      <% _.each(question.get("options").models, function(option) { %>
+        <label class="option" id="<%=option.get('id')%>">
+          <% if (option.isCorrect()) { %>
+            <span>✔</span>
+          <% } else { %>
+            <span>✘</span>
+          <% } %>
+          <input type="checkbox" <% if (option.get("answered")) { print("checked") } %>/> 
+          <%=option.get("description")%>
+        </label>
+      <% }); %>
+
+    </div>
+    <br>
+    <% }); %>

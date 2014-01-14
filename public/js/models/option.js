@@ -8,8 +8,12 @@ app.models = app.models || {};
   app.models.Option = Backbone.Model.extend({
     defaults: {
       description: 'option 1',
-      isCorrect: false,
+      rightAnswer: false,
       answered: false,
+    },
+
+    isCorrect: function() {
+    	return this.get("rightAnswer") === this.get("answered");
     }
   });
 

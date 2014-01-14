@@ -9,8 +9,6 @@ app.Views = app.Views || {};
 
                 el: '#quizmain',
 
-                questionTemplate: _.template($('#question-template').html()),
-
                 events: {
                         'click #next': "clickNext",
                         'click #back': "clickBack",
@@ -25,27 +23,27 @@ app.Views = app.Views || {};
                                         new app.models.Option({
                                                 id:1,
                                                 description: "opcao 1",
-                                                isCorrect: true
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:2,
                                                 description: "opcao 2",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:3,
                                                 description: "opcao 3",
-                                                isCorrect: true
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:4,
                                                 description: "opcao 4",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:5,
                                                 description: "opcao 5",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         })
                                 ])
                         });
@@ -57,27 +55,27 @@ app.Views = app.Views || {};
                                         new app.models.Option({
                                                 id:6,
                                                 description: "opcao 1",
-                                                isCorrect: true
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:7,
                                                 description: "opcao 2",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:8,
                                                 description: "opcao 3",
-                                                isCorrect: true
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:9,
                                                 description: "opcao 4",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:10,
                                                 description: "opcao 5",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         })
                                 ])
                         });
@@ -89,27 +87,27 @@ app.Views = app.Views || {};
                                         new app.models.Option({
                                                 id:11,
                                                 description: "opcao 1",
-                                                isCorrect: true
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:12,
                                                 description: "opcao 2",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:13,
                                                 description: "opcao 3",
-                                                isCorrect: true
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:14,
                                                 description: "opcao 4",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:15,
                                                 description: "opcao 5",
-                                                isCorrect: false
+                                                rightAnswer: false
                                         })
                                 ])
                         });
@@ -175,5 +173,6 @@ app.Views = app.Views || {};
                         option.set("answered", $(optionElem).children().is(':checked'));
                     })
                 }
+                //$('.option').children('input').attr('checked', true);
         });
 })(jQuery);
