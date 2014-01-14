@@ -5,10 +5,6 @@ app.Views = app.Views || {};
 (function ($) {
         'use strict';
 
-        // The Application
-        // ---------------
-
-        // Our overall **AppView** is the top-level piece of UI.
         app.Views.Question = Backbone.View.extend({
 
                 el: '#quizmain',
@@ -16,7 +12,8 @@ app.Views = app.Views || {};
                 questionTemplate: _.template($('#question-template').html()),
 
                 events: {
-                        'click #next': "clickNext"
+                        'click #next': "clickNext",
+                        'click #back': "clickBack"
                 },
 
                 initialize: function () {
@@ -83,9 +80,42 @@ app.Views = app.Views || {};
                                         })
                                 ])
                         });
+                        
+                        var question3 = new app.models.Question({
+                                id: 3,
+                                description: "Qual a capital do Canada?",
+                                options: new app.collections.Options([ 
+                                        new app.models.Option({
+                                                id:11,
+                                                description: "opcao 1",
+                                                isCorrect: true
+                                        }),
+                                        new app.models.Option({
+                                                id:12,
+                                                description: "opcao 2",
+                                                isCorrect: false
+                                        }),
+                                        new app.models.Option({
+                                                id:13,
+                                                description: "opcao 3",
+                                                isCorrect: true
+                                        }),
+                                        new app.models.Option({
+                                                id:14,
+                                                description: "opcao 4",
+                                                isCorrect: false
+                                        }),
+                                        new app.models.Option({
+                                                id:15,
+                                                description: "opcao 5",
+                                                isCorrect: false
+                                        })
+                                ])
+                        });
 
-                        this.questions = new app.collections.Questions([question1, question2]);
+                        this.questions = new app.collections.Questions([question1, question2, question3]);
                         this.currentQuestionIndex = 0
+
                         this.render();
                 },
 
@@ -95,19 +125,45 @@ app.Views = app.Views || {};
 
                         var template = _.template($('#question-template').html(), data);
                         this.$el.html(template);
+
+                        this.navigateButtonsVisibility();
                 },
 
                 clickNext: function() {
                         this.updateOptionsWithUserAnswers();
+                        this.currentQuestionIndex = this.currentQuestionIndex + 1;
                         this.decideIfAllQuestionsAreAnswered();                        
                 },
 
+                clickBack: function() {
+                        this.updateOptionsWithUserAnswers();
+                        this.currentQuestionIndex = this.currentQuestionIndex - 1;
+                        this.decideIfAllQuestionsAreAnswered();
+                },
+
                 decideIfAllQuestionsAreAnswered: function() {
-                    if (this.currentQuestionIndex < this.questions.length - 1) {
-                        this.currentQuestionIndex = this.currentQuestionIndex + 1;
+                    if (this.currentQuestionIndex < this.questions.length) {
                         this.render();
                     } else {
                         console.log(this.questions.toJSON())
+                    }
+                },
+
+                navigateButtonsVisibility: function() {
+                    this.$finish = $('#finish');
+                    this.$back = $('#back');
+                    this.$next = $('#next');
+
+                    this.$finish.hide();
+                    this.$next.show();
+                    this.$back.show();
+                    
+                    if (this.currentQuestionIndex === this.questions.length - 1) {
+                        this.$next.hide();
+                        this.$finish.show();
+                    }
+                    if (this.currentQuestionIndex === 0) {
+                        this.$back.hide();
                     }
                 },
 
