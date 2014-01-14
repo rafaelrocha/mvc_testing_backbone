@@ -25,7 +25,7 @@ block content
     <div>
       <p><%= description %></p>
       <% _.each(options.models, function(option) { %>
-        <label>
+        <label class="option" id="<%=option.get('id')%>">
           <input type="checkbox"/><%=option.get("description")%>
         </label>
       <% }); %>

@@ -8,7 +8,8 @@ app.models = app.models || {};
   app.models.Option = Backbone.Model.extend({
     defaults: {
       description: 'option 1',
-      isCorrect: false
+      isCorrect: false,
+      answered: false,
     }
   });
 
