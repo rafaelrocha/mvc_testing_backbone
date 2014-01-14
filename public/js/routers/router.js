@@ -7,18 +7,23 @@ var app = app || {};
   app.Router = Backbone.Router.extend({
       routes: {
           '': 'index',
-          'question': 'question'
+          'question': 'question',
+          'result': 'result',
       },
 
-      index: function(){
+      index: function() {
           new app.Views.QuizApp();
       },
 
-      question: function(){
+      question: function() {
           new app.Views.Question();
+      },
+
+      result: function() {
+          new app.Views.Result();
       }
   });
 
-  new app.Router;
+  app.quizRouter = new app.Router;
   Backbone.history.start();
 })();

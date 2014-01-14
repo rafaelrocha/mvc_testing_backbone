@@ -13,7 +13,8 @@ app.Views = app.Views || {};
 
                 events: {
                         'click #next': "clickNext",
-                        'click #back': "clickBack"
+                        'click #back': "clickBack",
+                        'click #finish': "clickFinish",
                 },
 
                 initialize: function () {
@@ -132,21 +133,17 @@ app.Views = app.Views || {};
                 clickNext: function() {
                         this.updateOptionsWithUserAnswers();
                         this.currentQuestionIndex = this.currentQuestionIndex + 1;
-                        this.decideIfAllQuestionsAreAnswered();                        
+                        this.render();
                 },
 
                 clickBack: function() {
                         this.updateOptionsWithUserAnswers();
                         this.currentQuestionIndex = this.currentQuestionIndex - 1;
-                        this.decideIfAllQuestionsAreAnswered();
+                        this.render();
                 },
 
-                decideIfAllQuestionsAreAnswered: function() {
-                    if (this.currentQuestionIndex < this.questions.length) {
-                        this.render();
-                    } else {
-                        console.log(this.questions.toJSON())
-                    }
+                clickFinish: function() {
+                        app.quizRouter.navigate("result", true);
                 },
 
                 navigateButtonsVisibility: function() {
@@ -176,7 +173,6 @@ app.Views = app.Views || {};
                         var option = options.get($(optionElem).attr('id'));
                         
                         option.set("answered", $(optionElem).children().is(':checked'));
-                        var stoppp;
                     })
                 }
         });
