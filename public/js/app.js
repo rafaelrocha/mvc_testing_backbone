@@ -7,5 +7,6 @@ var ESC_KEY = 27;
 $(function () {
         'use strict';
 
-        window.App = app				
+        $(document).foundation();
+        window.App = app;
 });

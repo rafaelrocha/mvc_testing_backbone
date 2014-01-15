@@ -4,56 +4,65 @@ block content
   script(type="text/javascript").
     window.user = !{user};
 
+  
+  nav.top-bar(data-top-bar)
+    ul.title-area
+      li.name
+        h1
+          a(href="#") AC Quiz
+
   section
-    <h1>AC Quiz!</h1>
     section#quizmain
 
   script#user-template(type="text/template").
-    <div>
+    <div class="row">
       <p>Fill out your name and email to start the quiz.</p>
       <label>Name</label>
       <input type="text"/>
       <label>Email</label>
       <input type="text"/>
-    </div>
-    <div>
-      <a href="#question" id="start">Start</a>
+    
+      <a href="#question" id="start" class="button">Start</a>
     </div>
 
   script#question-template(type="text/template").
-    <h2>Pergunta <%=currentQuestionIndex%> </h2>
-    <div>
-      <p><%= description %></p>
-      <% _.each(options.models, function(option) { %>
-        <label class="option" id="<%=option.get('id')%>">
-          <input type="checkbox"/><%=option.get("description")%>
-        </label>
-      <% }); %>
-    </div>
-    <div>
-      <button id="finish">Finish</button>
-      <button id="back">Back</button>
-      <button id="next">Next</button>
+    <div class="row">
+      <h2>Pergunta <%=currentQuestionIndex%> </h2>
+      <div>
+        <p><%= description %></p>
+        <% _.each(options.models, function(option) { %>
+          <label class="option" id="<%=option.get('id')%>">
+            <input type="checkbox"/><%=option.get("description")%>
+          </label>
+        <% }); %>
+      </div>
+      <div>
+        <button id="back" class="button alert">Back</button>
+        <button id="finish" class="button alert">Finish</button>
+        <button id="next" class="button">Next</button>
+      </div>
     </div>
 
   script#result-template(type="text/template").
-    <h2>Result!</h2>
-    <% _.each(answeredQuestions, function(question) { %>
-    <div>
-      <p><%= question.get("description") %></p>
+    <div class="row">
+      <h2>Result!</h2>
+      <% _.each(answeredQuestions, function(question) { %>
+      <div>
+        <p><%= question.get("description") %></p>
 
-      <% _.each(question.get("options").models, function(option) { %>
-        <label class="option" id="<%=option.get('id')%>">
-          <% if (option.isCorrect()) { %>
-            <span>✔</span>
-          <% } else { %>
-            <span>✘</span>
-          <% } %>
-          <input type="checkbox" disabled <% if (option.get("answered")) { print("checked") } %>/> 
-          <%=option.get("description")%>
-        </label>
+        <% _.each(question.get("options").models, function(option) { %>
+          <label class="option" id="<%=option.get('id')%>">
+            <% if (option.isCorrect()) { %>
+              <span>✔</span>
+            <% } else { %>
+              <span>✘</span>
+            <% } %>
+            <input type="checkbox" disabled <% if (option.get("answered")) { print("checked") } %>/> 
+            <%=option.get("description")%>
+          </label>
+        <% }); %>
+        <p><span>✔ <%= question.correctAnswersInPercentage() * 100%>%</span></p>
+      </div>
+      <br>
       <% }); %>
-      <p><span>✔ <%= question.correctAnswersInPercentage() * 100%>%</span></p>
     </div>
-    <br>
-    <% }); %>
