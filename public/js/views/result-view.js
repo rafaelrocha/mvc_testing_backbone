@@ -61,23 +61,26 @@ app.Views = app.Views || {};
                                                 id:7,
                                                 description: "opcao 2",
                                                 rightAnswer: false,
-                                                answered: true
+                                                answered: false
 
                                         }),
                                         new app.models.Option({
                                                 id:8,
                                                 description: "opcao 3",
-                                                rightAnswer: true
+                                                rightAnswer: true,
+                                                answered: true
                                         }),
                                         new app.models.Option({
                                                 id:9,
                                                 description: "opcao 4",
-                                                rightAnswer: false
+                                                rightAnswer: false,
+                                                answered: false
                                         }),
                                         new app.models.Option({
                                                 id:10,
                                                 description: "opcao 5",
-                                                rightAnswer: false
+                                                rightAnswer: false,
+                                                answered: false
                                         })
                                 ])
                         });

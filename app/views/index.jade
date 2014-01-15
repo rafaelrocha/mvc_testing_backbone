@@ -49,11 +49,11 @@ block content
           <% } else { %>
             <span>✘</span>
           <% } %>
-          <input type="checkbox" <% if (option.get("answered")) { print("checked") } %>/> 
+          <input type="checkbox" disabled <% if (option.get("answered")) { print("checked") } %>/> 
           <%=option.get("description")%>
         </label>
       <% }); %>
-
+      <p><span>✔ <%= question.correctAnswersInPercentage() * 100%>%</span></p>
     </div>
     <br>
     <% }); %>

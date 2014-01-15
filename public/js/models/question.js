@@ -9,7 +9,22 @@ app.models = app.models || {};
     defaults: {
       description: 'question 1',
       options: new app.collections.Options()
+    },
+
+    correctAnswersInPercentage: function() {
+    	var options = this.get("options");
+    	var quantityOfOptions = options.length;
+    	var rightAnswersCount = 0;
+    	
+    	_.each(options.models, function(option) {
+    		if (option.isCorrect()) {
+    			rightAnswersCount = rightAnswersCount + 1	
+    		}
+    	})
+
+    	return  rightAnswersCount / quantityOfOptions;
     }
+
   });
 
 })();
