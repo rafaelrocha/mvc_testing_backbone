@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema
 
 var OptionSchema = new Schema({
+		_id: Number,
+
     description: {
         type: String,
         default: '',
@@ -11,6 +13,10 @@ var OptionSchema = new Schema({
     },
 
     rightAnswer: {
+    	type: Boolean
+    },
+
+    answered: {
     	type: Boolean
     }
 });
@@ -25,37 +31,20 @@ var QuestionSchema = new Schema({
     optionns: [OptionSchema]
 });
 
-mongoose.model('Question', QuestionSchema);
-
-
-
-
-
-var AnswerSchema = new Schema({
-    optionn: {type: Schema.ObjectId, ref: OptionSchema},
-    answered: {
-    	type: Boolean
-    }
-});
-
-
 var UserSchema = new Schema({
+		_id: {
+        type: String,
+        default: '',
+        trim: true
+    },
+
     name: {
         type: String,
         default: '',
         trim: true
-    },
+    },    
 
-    email: {
-        type: String,
-        default: '',
-        trim: true
-    },
-
-    answers: [{
-    	question: {type: Schema.ObjectId, ref: QuestionSchema},
-    	answers: [AnswerSchema]
-    }]
+    answers: [QuestionSchema]
 });
 
 mongoose.model('User', UserSchema);
