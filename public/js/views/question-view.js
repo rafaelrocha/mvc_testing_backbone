@@ -20,97 +20,55 @@ app.Views = app.Views || {};
                                 options: new app.collections.Options([ 
                                         new app.models.Option({
                                                 id:1,
-                                                description: "opcao 1",
-                                                rightAnswer: true
+                                                description: "São Paulo",
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:2,
-                                                description: "opcao 2",
+                                                description: "Salvador",
                                                 rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:3,
-                                                description: "opcao 3",
-                                                rightAnswer: true
+                                                description: "Brasília",
+                                                rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:4,
-                                                description: "opcao 4",
+                                                description: "Belo Horizonte",
                                                 rightAnswer: false
                                         }),
                                         new app.models.Option({
                                                 id:5,
-                                                description: "opcao 5",
-                                                rightAnswer: false
+                                                description: "Divinópolis",
+                                                rightAnswer: true
                                         })
                                 ])
                         });
 
                         var question2 = new app.models.Question({
                                 id: 2,
-                                description: "Qual a capital do US?",
+                                description: "Quais os melhores time do mundo?",
                                 options: new app.collections.Options([ 
                                         new app.models.Option({
                                                 id:6,
-                                                description: "opcao 1",
+                                                description: "Atlético MG",
                                                 rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:7,
-                                                description: "opcao 2",
-                                                rightAnswer: false
+                                                description: "Guarani de Divinópolis",
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:8,
-                                                description: "opcao 3",
-                                                rightAnswer: true
-                                        }),
-                                        new app.models.Option({
-                                                id:9,
-                                                description: "opcao 4",
-                                                rightAnswer: false
-                                        }),
-                                        new app.models.Option({
-                                                id:10,
-                                                description: "opcao 5",
-                                                rightAnswer: false
-                                        })
-                                ])
-                        });
-                        
-                        var question3 = new app.models.Question({
-                                id: 3,
-                                description: "Qual a capital do Canada?",
-                                options: new app.collections.Options([ 
-                                        new app.models.Option({
-                                                id:11,
-                                                description: "opcao 1",
-                                                rightAnswer: true
-                                        }),
-                                        new app.models.Option({
-                                                id:12,
-                                                description: "opcao 2",
-                                                rightAnswer: false
-                                        }),
-                                        new app.models.Option({
-                                                id:13,
-                                                description: "opcao 3",
-                                                rightAnswer: true
-                                        }),
-                                        new app.models.Option({
-                                                id:14,
-                                                description: "opcao 4",
-                                                rightAnswer: false
-                                        }),
-                                        new app.models.Option({
-                                                id:15,
-                                                description: "opcao 5",
+                                                description: "Cruzeiro das Maria",
                                                 rightAnswer: false
                                         })
                                 ])
                         });
 
-                        this.questions = new app.collections.Questions([question1, question2, question3]);
+                        this.questions = new app.collections.Questions([question1, question2]);
                         this.currentQuestionIndex = 0
                 },
 
@@ -139,7 +97,10 @@ app.Views = app.Views || {};
                 },
 
                 clickFinish: function() {
-                        app.quizRouter.navigate("result", true);
+                    this.updateOptionsWithUserAnswers();
+                    window.user.set("answers", this.questions);
+                    console.log(window.user);
+                    app.quizRouter.navigate("result", true);
                 },
 
                 navigateButtonsVisibility: function() {

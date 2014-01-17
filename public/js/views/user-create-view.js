@@ -14,6 +14,7 @@ app.Views = app.Views || {};
                 },
 
                 initialize: function () {
+                        window.user = undefined;
                 },
 
                 render: function () {
@@ -29,14 +30,12 @@ app.Views = app.Views || {};
                                 name: $('#name').val()
                         };
 
-                        var user = new app.models.User(userData);
+                        window.user = new app.models.User(userData);
                         user.fetch({
                                 success: function() {
                                         if (user.alreadyAnsweredTheQuiz()) {
-                                                window.user = user;
                                                 app.quizRouter.navigate("result", true);
                                         } else {
-                                                window.user = undefined;
                                                 app.quizRouter.navigate("question", true);
                                         }
                                 },
