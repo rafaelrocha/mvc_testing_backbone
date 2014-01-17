@@ -11,6 +11,13 @@ app.models = app.models || {};
       options: new app.collections.Options()
     },
 
+    initialize: function(data) {
+      this.set({
+        description: data.description || '',
+        options: data.options || new app.collections.Questions()
+      });
+    },
+
     correctAnswersInPercentage: function() {
     	var options = this.get("options");
     	var quantityOfOptions = options.length;

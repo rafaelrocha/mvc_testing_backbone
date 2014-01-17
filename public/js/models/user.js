@@ -12,35 +12,37 @@ app.models = app.models || {};
 			return this.urlRoot + "/" + this.id;
 		},
 
-		defaults: {
-			id: '',
-      name: '',
-      answers: new app.collections.Questions()
-    },
+        initialize: function(data) {
+            this.set({
+                  id: data.id || '',
+                  name: data.name || '',
+                  answers: new app.collections.Questions()
+            });
+        },
 
-
-    alreadyAnsweredTheQuiz: function() {
-    	if (this.get("answers")) {
-    		return true;
-    	}
-    	return false;
-    },
+        alreadyAnsweredTheQuiz: function() {
+        	if (this.get("answers") && this.get("answers").length > 0) {
+        		return true;
+        	}
+        	return false;
+        },
 
     parse: function(response) {
-    	var that = this;
-        console.log("parse");
-    	_.each(response.answers, function(answer) {
-            console.log("answer");
-    		var answerModel = new app.models.Question({description: answer.description});
-    		
-    		_.each(answer.optionns, function(option) {
-                console.log("options");
-    			answerModel.get("options").push(new app.models.Option(option));
-    		})
-    		
-    		that.get("answers").push(answerModel);
-    	});
-    	
+        console.log("User parseing");
+        console.log(response);
+        if (response) {
+        	var that = this;
+
+        	_.each(response.answers, function(answer) {
+        		var answerModel = new app.models.Question({description: answer.description});
+        		
+        		_.each(answer.optionns, function(option) {
+        			answerModel.get("options").push(new app.models.Option(option));
+        		})
+        		
+        		that.get("answers").push(answerModel);
+        	});
+    	}
     	return this.model;
     }
   });

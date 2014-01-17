@@ -7,8 +7,6 @@ app.Views = app.Views || {};
 
         app.Views.Question = Backbone.View.extend({
 
-                el: '#quizmain',
-
                 events: {
                         'click #next': "clickNext",
                         'click #back': "clickBack",
@@ -114,8 +112,6 @@ app.Views = app.Views || {};
 
                         this.questions = new app.collections.Questions([question1, question2, question3]);
                         this.currentQuestionIndex = 0
-
-                        this.render();
                 },
 
                 render: function () {
@@ -126,6 +122,8 @@ app.Views = app.Views || {};
                         this.$el.html(template);
 
                         this.navigateButtonsVisibility();
+
+                        return this;
                 },
 
                 clickNext: function() {
@@ -173,6 +171,5 @@ app.Views = app.Views || {};
                         option.set("answered", $(optionElem).children().is(':checked'));
                     })
                 }
-                //$('.option').children('input').attr('checked', true);
         });
 })(jQuery);

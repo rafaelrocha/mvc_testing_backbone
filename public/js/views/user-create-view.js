@@ -7,8 +7,6 @@ app.Views = app.Views || {};
 
         app.Views.QuizApp = Backbone.View.extend({
 
-                el: '#quizmain',
-
                 userCreate: _.template($('#user-template').html()),
 
                 events: {
@@ -16,15 +14,15 @@ app.Views = app.Views || {};
                 },
 
                 initialize: function () {
-                        this.render();
                 },
 
                 render: function () {
                         this.$el.html(this.userCreate);
+                        return this;
                 },
 
                 start: function() {
-                        console.log("START: " + this.cid);
+                        console.log("Start bind" + this.cid);
 
                         var userData = {
                                 id: $('#email').val(),
