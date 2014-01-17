@@ -116,8 +116,8 @@ app.Views = app.Views || {};
                                         })
                                 ])
                         });
-
-                        this.answeredQuestions = new app.collections.Questions([question1, question2, question3]);
+                        
+                        this.answeredQuestions = window.user.get("answers");
                         this.render();
                 },
 

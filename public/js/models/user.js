@@ -14,17 +14,35 @@ app.models = app.models || {};
 
 		defaults: {
 			id: '',
-      name: ''
+      name: '',
+      answers: new app.collections.Questions()
     },
 
+
     alreadyAnsweredTheQuiz: function() {
-    	console.log(this.get("answers"));
     	if (this.get("answers")) {
     		return true;
     	}
     	return false;
-    }
+    },
 
+    parse: function(response) {
+    	var that = this;
+        console.log("parse");
+    	_.each(response.answers, function(answer) {
+            console.log("answer");
+    		var answerModel = new app.models.Question({description: answer.description});
+    		
+    		_.each(answer.optionns, function(option) {
+                console.log("options");
+    			answerModel.get("options").push(new app.models.Option(option));
+    		})
+    		
+    		that.get("answers").push(answerModel);
+    	});
+    	
+    	return this.model;
+    }
   });
 
 })();

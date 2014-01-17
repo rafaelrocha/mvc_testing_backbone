@@ -24,6 +24,8 @@ app.Views = app.Views || {};
                 },
 
                 start: function() {
+                        console.log("START: " + this.cid);
+
                         var userData = {
                                 id: $('#email').val(),
                                 name: $('#name').val()
@@ -33,8 +35,10 @@ app.Views = app.Views || {};
                         user.fetch({
                                 success: function() {
                                         if (user.alreadyAnsweredTheQuiz()) {
+                                                window.user = user;
                                                 app.quizRouter.navigate("result", true);
                                         } else {
+                                                window.user = undefined;
                                                 app.quizRouter.navigate("question", true);
                                         }
                                 },
