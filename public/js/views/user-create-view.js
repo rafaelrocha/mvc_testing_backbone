@@ -23,18 +23,15 @@ app.Views = app.Views || {};
                 },
 
                 start: function() {
-                        console.log("Start bind" + this.cid);
-
                         var userData = {
                                 email: $('#email').val(),
                                 name: $('#name').val()
                         };
 
                         window.user = new app.models.User(userData);
-                        user.fetch({
-                                data: {email: userData.email}
-                                ,success: function() {
-                                        if (user.alreadyAnsweredTheQuiz()) {
+                        window.user.fetchByEmail(userData.email, {
+                                success: function() {
+                                        if (window.user.alreadyAnsweredTheQuiz()) {
                                                 app.quizRouter.navigate("result", true);
                                         } else {
                                                 app.quizRouter.navigate("question", true);

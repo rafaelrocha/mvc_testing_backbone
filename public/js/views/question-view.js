@@ -17,7 +17,7 @@ app.Views = app.Views || {};
                         var question1 = new app.models.Question({
                                 id: 1,
                                 description: "Qual a capital do Brasil?",
-                                options: new app.collections.Options([ 
+                                optionns: new app.collections.Options([ 
                                         new app.models.Option({
                                                 id:1,
                                                 description: "São Paulo",
@@ -49,7 +49,7 @@ app.Views = app.Views || {};
                         var question2 = new app.models.Question({
                                 id: 2,
                                 description: "Quais os melhores time do mundo?",
-                                options: new app.collections.Options([ 
+                                optionns: new app.collections.Options([ 
                                         new app.models.Option({
                                                 id:6,
                                                 description: "Atlético MG",
@@ -128,8 +128,8 @@ app.Views = app.Views || {};
                     var optionsElem = $('.option');
                     optionsElem.each(function(index, optionElem) {
                         var question = that.questions.at(that.currentQuestionIndex);
-                        var options = question.get("options");
-                        var option = options.get($(optionElem).attr('id'));
+                        var optionns = question.get("optionns");
+                        var option = optionns.get($(optionElem).attr('id'));
                         
                         option.set("answered", $(optionElem).children().is(':checked'));
                     })

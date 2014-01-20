@@ -9,16 +9,16 @@ app.models = app.models || {};
     initialize: function(data) {
       this.set({
         description: data.description || '',
-        options: data.options || new app.collections.Questions()
+        optionns: data.optionns || new app.collections.Questions()
       });
     },
 
     correctAnswersInPercentage: function() {
-    	var options = this.get("options");
-    	var quantityOfOptions = options.length;
+    	var optionns = this.get("optionns");
+    	var quantityOfOptions = optionns.length;
     	var rightAnswersCount = 0;
     	
-    	_.each(options.models, function(option) {
+    	_.each(optionns.models, function(option) {
     		if (option.isCorrect()) {
     			rightAnswersCount = rightAnswersCount + 1	
     		}

@@ -30,7 +30,7 @@ block content
       <h2>Pergunta <%=currentQuestionIndex%> </h2>
       <div>
         <p><%= description %></p>
-        <% _.each(options.models, function(option) { %>
+        <% _.each(optionns.models, function(option) { %>
           <label class="option" id="<%=option.get('id')%>">
             <input type="checkbox"/><%=option.get("description")%>
           </label>
@@ -50,7 +50,7 @@ block content
       <div>
         <p><%= question.get("description") %></p>
 
-        <% _.each(question.get("options").models, function(option) { %>
+        <% _.each(question.get("optionns").models, function(option) { %>
           <label class="option" id="<%=option.get('id')%>">
             <% if (option.isCorrect()) { %>
               <span>✔</span>

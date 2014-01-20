@@ -16,12 +16,12 @@ exports.find = function(req, res) {
 };
 
 exports.findByEmail = function(req, res) {
-    console.log(req.params.filters);
-    User.findOne(req.params.filters, function (err, user) {
+    User.findOne({'email': req.params.email}, function (err, user) {
         if (err) {
             console.log(err);
             res.send(500);
         } else {
+            console.log(user);
             res.jsonp(user);
         }
     })
@@ -52,3 +52,4 @@ exports.all = function(req, res) {
             }
     });
 };
+
