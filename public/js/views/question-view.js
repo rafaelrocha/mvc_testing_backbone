@@ -13,7 +13,7 @@ app.Views = app.Views || {};
                         'click #finish': "clickFinish",
                 },
 
-                initialize: function () {
+                initialize: function (container) {
                         var question1 = new app.models.Question({
                                 id: 1,
                                 description: "Qual a capital do Brasil?",
@@ -68,6 +68,7 @@ app.Views = app.Views || {};
                                 ])
                         });
 
+                        this.container = container;
                         this.questions = new app.collections.Questions([question1, question2]);
                         this.currentQuestionIndex = 0
                 },
@@ -79,6 +80,7 @@ app.Views = app.Views || {};
                         var template = _.template($('#question-template').html(), data);
                         this.$el.html(template);
 
+                        this.container.html(this.$el);
                         this.navigateButtonsVisibility();
 
                         return this;
@@ -121,6 +123,7 @@ app.Views = app.Views || {};
                     if (this.currentQuestionIndex === 0) {
                         this.$back.hide();
                     }
+                    this.delegateEvents();
                 },
 
                 updateOptionsWithUserAnswers: function() {

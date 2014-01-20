@@ -13,12 +13,14 @@ app.Views = app.Views || {};
                         'click #start': 'start',
                 },
 
-                initialize: function () {
+                initialize: function (container) {
                         window.user = undefined;
+                        this.container = container;
                 },
 
                 render: function () {
                         this.$el.html(this.userCreate);
+                        this.container.html(this.$el);
                         return this;
                 },
 

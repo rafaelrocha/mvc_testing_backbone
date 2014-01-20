@@ -12,7 +12,8 @@ app.Views = app.Views || {};
                 events: {
                 },
 
-                initialize: function () {                        
+                initialize: function (container) {
+                        this.container = container;
                 },
 
                 render: function () {
@@ -20,6 +21,7 @@ app.Views = app.Views || {};
 
                         var resultTemplate = _.template($('#result-template').html(), {"answeredQuestions": this.answeredQuestions.models});
                         this.$el.html(resultTemplate);
+                        this.container.html(this.$el);
                         return this;
                 },
 

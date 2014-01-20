@@ -7,6 +7,7 @@ var app = app || {};
   var routerManager = function() {
     var that = {};
 
+    var quizMainContainer = $("#quizmain");
     var currentView;
 
     that.routes = {
@@ -22,21 +23,21 @@ var app = app || {};
       }
 
       currentView = view;
-      var el = currentView.render().el;
       currentView.delegateEvents();
-      $("#quizmain").html(el);
+      currentView.render();
+      
     }
     
     that.index = function() {
-      showView(new app.Views.QuizApp());
+      showView(new app.Views.QuizApp(quizMainContainer));
     }
 
     that.question = function() {
-      showView(new app.Views.Question());
+      showView(new app.Views.Question(quizMainContainer));
     }
 
     that.result = function() {
-      showView(new app.Views.Result());
+      showView(new app.Views.Result(quizMainContainer));
     }
 
     return that;
