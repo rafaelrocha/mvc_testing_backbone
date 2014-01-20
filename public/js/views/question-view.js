@@ -82,24 +82,25 @@ app.Views = app.Views || {};
 
                         this.container.html(this.$el);
                         this.navigateButtonsVisibility();
-
+                        this.syncUserInputsWithModel();
+                        
                         return this;
                 },
 
                 clickNext: function() {
-                        this.updateOptionsWithUserAnswers();
+                        this.syncModelWithUserInputs();
                         this.currentQuestionIndex = this.currentQuestionIndex + 1;
                         this.render();
                 },
 
                 clickBack: function() {
-                        this.updateOptionsWithUserAnswers();
+                        this.syncModelWithUserInputs();
                         this.currentQuestionIndex = this.currentQuestionIndex - 1;
                         this.render();
                 },
 
                 clickFinish: function() {
-                    this.updateOptionsWithUserAnswers();
+                    this.syncModelWithUserInputs();
                     window.user.set("answers", this.questions);
                     
                     console.log(window.user);
@@ -126,7 +127,7 @@ app.Views = app.Views || {};
                     this.delegateEvents();
                 },
 
-                updateOptionsWithUserAnswers: function() {
+                syncModelWithUserInputs: function() {
                     var that = this;
                     var optionsElem = $('.option');
                     optionsElem.each(function(index, optionElem) {
@@ -135,6 +136,14 @@ app.Views = app.Views || {};
                         var option = optionns.get($(optionElem).attr('id'));
                         
                         option.set("answered", $(optionElem).children().is(':checked'));
+                    })
+                },
+
+                syncUserInputsWithModel: function() {
+                    var question = this.questions.at(this.currentQuestionIndex);
+                    question.get("optionns").each(function(option) {
+                        var optionElem = $('#' + option.get("id") + ' input');
+                        optionElem.prop( "checked", option.get("answered"));
                     })
                 }
         });
