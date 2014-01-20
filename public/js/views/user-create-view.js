@@ -26,13 +26,14 @@ app.Views = app.Views || {};
                         console.log("Start bind" + this.cid);
 
                         var userData = {
-                                id: $('#email').val(),
+                                email: $('#email').val(),
                                 name: $('#name').val()
                         };
 
                         window.user = new app.models.User(userData);
                         user.fetch({
-                                success: function() {
+                                data: {email: userData.email}
+                                ,success: function() {
                                         if (user.alreadyAnsweredTheQuiz()) {
                                                 app.quizRouter.navigate("result", true);
                                         } else {

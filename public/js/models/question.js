@@ -6,11 +6,6 @@ app.models = app.models || {};
   'use strict';
 
   app.models.Question = Backbone.Model.extend({
-    defaults: {
-      description: 'question 1',
-      options: new app.collections.Options()
-    },
-
     initialize: function(data) {
       this.set({
         description: data.description || '',

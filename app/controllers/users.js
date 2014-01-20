@@ -15,6 +15,18 @@ exports.find = function(req, res) {
     })
 };
 
+exports.findByEmail = function(req, res) {
+    console.log(req.params.filters);
+    User.findOne(req.params.filters, function (err, user) {
+        if (err) {
+            console.log(err);
+            res.send(500);
+        } else {
+            res.jsonp(user);
+        }
+    })
+};
+
 exports.create = function(req, res) {
     var user = new User(req.body);
     

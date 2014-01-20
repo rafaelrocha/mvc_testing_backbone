@@ -99,7 +99,9 @@ app.Views = app.Views || {};
                 clickFinish: function() {
                     this.updateOptionsWithUserAnswers();
                     window.user.set("answers", this.questions);
+                    
                     console.log(window.user);
+                    window.user.save();
                     app.quizRouter.navigate("result", true);
                 },
 

@@ -32,17 +32,15 @@ var QuestionSchema = new Schema({
 });
 
 var UserSchema = new Schema({
-		_id: {
+    email: {
         type: String,
-        default: '',
         trim: true
     },
-
     name: {
         type: String,
         default: '',
         trim: true
-    },    
+    },
 
     answers: [QuestionSchema]
 });
