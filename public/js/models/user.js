@@ -30,6 +30,23 @@ app.models = app.models || {};
           }
 
           return Backbone.Model.prototype.fetch.call(this, options);
+        },
+
+        parse: function(response) {
+            if (response) {
+              var that = this;
+
+              _.each(response.answers, function(answer) {
+                var answerModel = new app.models.Question({description: answer.description});
+               
+                _.each(answer.optionns, function(option) {
+                  answerModel.get("optionns").push(new app.models.Option(option));
+                })
+               
+                that.get("answers").push(answerModel);
+             });
+          }
+          return this.model;
         }
   });
 
