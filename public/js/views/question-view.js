@@ -70,10 +70,12 @@ app.Views = app.Views || {};
 
                         this.container = container;
                         this.questions = new app.collections.Questions([question1, question2]);
-                        this.currentQuestionIndex = 0
+                        this.currentQuestionIndex = 0;
                 },
 
-                render: function () {
+                render: function (questionId) {
+                        this.currentQuestionIndex = questionId;
+
                         var data = this.questions.at(this.currentQuestionIndex).toJSON();
                         data.currentQuestionIndex = this.currentQuestionIndex + 1
 
@@ -83,27 +85,23 @@ app.Views = app.Views || {};
                         this.container.html(this.$el);
                         this.navigateButtonsVisibility();
                         this.syncUserInputsWithModel();
-                        
+
                         return this;
                 },
 
                 clickNext: function() {
-                        this.syncModelWithUserInputs();
-                        this.currentQuestionIndex = this.currentQuestionIndex + 1;
-                        this.render();
+                    this.syncModelWithUserInputs();
+                    app.quizRouter.navigate("question/q" + (this.currentQuestionIndex + 1), true);
                 },
 
                 clickBack: function() {
-                        this.syncModelWithUserInputs();
-                        this.currentQuestionIndex = this.currentQuestionIndex - 1;
-                        this.render();
+                    this.syncModelWithUserInputs();
+                    app.quizRouter.navigate("question/q" + (this.currentQuestionIndex - 1), true);
                 },
 
                 clickFinish: function() {
                     this.syncModelWithUserInputs();
                     window.user.set("answers", this.questions);
-                    
-                    console.log(window.user);
                     window.user.save();
                     app.quizRouter.navigate("result", true);
                 },

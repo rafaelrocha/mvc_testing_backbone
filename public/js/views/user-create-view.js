@@ -19,6 +19,7 @@ app.Views = app.Views || {};
                 },
 
                 render: function () {
+                        window.user = undefined;
                         this.$el.html(this.userCreate);
                         this.container.html(this.$el);
                         return this;
@@ -36,7 +37,7 @@ app.Views = app.Views || {};
                                         if (window.user.alreadyAnsweredTheQuiz()) {
                                                 app.quizRouter.navigate("result", true);
                                         } else {
-                                                app.quizRouter.navigate("question", true);
+                                                app.quizRouter.navigate("question/q0", true);
                                         }
                                 },
                                 error: function() {

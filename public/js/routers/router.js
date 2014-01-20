@@ -10,13 +10,15 @@ var app = app || {};
     var quizMainContainer = $("#quizmain");
     var currentView;
 
+    var quizView = new app.Views.Question(quizMainContainer);
+
     that.routes = {
       '': 'index',
-      'question': 'question',
+      'question/q:id': 'question',
       'result': 'result'
     }
 
-    var showView = function(view) {
+    var showView = function(view, renderParam) {
       if (currentView) {
         currentView.remove();
         currentView.unbind();
@@ -24,16 +26,16 @@ var app = app || {};
 
       currentView = view;
       currentView.delegateEvents();
-      currentView.render();
-      
+      currentView.render(renderParam);
     }
     
     that.index = function() {
+      quizView = new app.Views.Question(quizMainContainer); //restart quizview state  
       showView(new app.Views.QuizApp(quizMainContainer));
     }
 
-    that.question = function() {
-      showView(new app.Views.Question(quizMainContainer));
+    that.question = function(id) {
+      showView(quizView, Number.valueOf()(id));
     }
 
     that.result = function() {
