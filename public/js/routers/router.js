@@ -41,11 +41,17 @@ var app = app || {};
     }
 
     that.question = function(id) {
-      showView(quizView, Number.valueOf()(id));
+      showView(quizView, {
+        user: userModel,
+        questionId: Number.valueOf()(id)
+      });
     }
 
     that.result = function() {
-      showView(new app.Views.Result(quizMainContainer));
+      showView(new app.Views.Result({
+        container: quizMainContainer,
+        user: userModel
+      }));
     }
 
     return that;

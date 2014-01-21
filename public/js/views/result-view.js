@@ -12,12 +12,13 @@ app.Views = app.Views || {};
                 events: {
                 },
 
-                initialize: function (container) {
-                        this.container = container;
+                initialize: function (options) {
+                        this.container = options.container;
+                        this.user = options.user;
                 },
 
                 render: function () {
-                        this.answeredQuestions = window.user.get("answers");
+                        this.answeredQuestions = this.user.get("answers");
 
                         var resultTemplate = _.template($('#result-template').html(), {"answeredQuestions": this.answeredQuestions.models});
                         this.$el.html(resultTemplate);

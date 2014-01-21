@@ -34,14 +34,10 @@ app.Views = app.Views || {};
                 },
 
                 initialize: function (options) {
-                        window.user = undefined;
-
                         this.container = options.container;
                 },
 
                 render: function () {
-                        window.user = undefined;
-
                         this.$el.html(this.userFormTemplate);
                         this.container.html(this.$el);
 
@@ -54,7 +50,6 @@ app.Views = app.Views || {};
                         if (that.model.isValid()) {
                                 that.model.fetchByEmail(that.model.get("email"), {
                                         success: function() {
-                                                window.user = that.model;
                                                 if (that.model.alreadyAnsweredTheQuiz()) {
                                                         app.quizRouter.navigate("result", true);
                                                 } else {

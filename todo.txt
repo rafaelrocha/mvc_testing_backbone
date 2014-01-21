@@ -1,0 +1,5 @@
+- DONE fix navigating button on the first question
+- DONE bind user answers with model when he goes back to one question already answered
+- DONE route each question to Backbone history works to all pages
+- DONE validate user fields
+- show message and then the results to a user who already answered the quiz and tried again

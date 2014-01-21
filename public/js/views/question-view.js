@@ -73,8 +73,9 @@ app.Views = app.Views || {};
                         this.currentQuestionIndex = 0;
                 },
 
-                render: function (questionId) {
-                        this.currentQuestionIndex = questionId;
+                render: function (options) {
+                        this.user = options.user;
+                        this.currentQuestionIndex = options.questionId;
 
                         var data = this.questions.at(this.currentQuestionIndex).toJSON();
                         data.currentQuestionIndex = this.currentQuestionIndex + 1
@@ -101,8 +102,8 @@ app.Views = app.Views || {};
 
                 clickFinish: function() {
                     this.syncModelWithUserInputs();
-                    window.user.set("answers", this.questions);
-                    window.user.save();
+                    this.user.set("answers", this.questions);
+                    this.user.save();
                     app.quizRouter.navigate("result", true);
                 },
 
