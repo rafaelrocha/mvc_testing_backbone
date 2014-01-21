@@ -10,6 +10,7 @@ var app = app || {};
     var quizMainContainer = $("#quizmain");
     var currentView;
 
+    var userModel = new app.models.User({});
     var quizView = new app.Views.Question(quizMainContainer);
 
     that.routes = {
@@ -30,8 +31,13 @@ var app = app || {};
     }
     
     that.index = function() {
+      userModel = new app.models.User({}); //restart user state
       quizView = new app.Views.Question(quizMainContainer); //restart quizview state  
-      showView(new app.Views.QuizApp(quizMainContainer));
+      
+      showView(new app.Views.QuizApp({
+        model: userModel,
+        container: quizMainContainer
+      }));
     }
 
     that.question = function(id) {

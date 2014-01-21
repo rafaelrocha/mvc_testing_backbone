@@ -14,6 +14,9 @@ app.models = app.models || {};
                   email: data.email || '',
                   answers: new app.collections.Questions()
             });
+
+            this.on('change:name', this.validateName, this);
+            this.on('change:email', this.validateEmail, this);
         },
 
         alreadyAnsweredTheQuiz: function() {
@@ -21,6 +24,42 @@ app.models = app.models || {};
         		return true;
         	}
         	return false;
+        },
+
+        validateName: function() {
+          if (!this.get("name")) {
+            this.set("nameInvalid", "Please fill out your name.");
+          } else {
+            this.set("nameInvalid", "");
+          }
+        },
+
+        isNameValid: function() { 
+          return this.get("nameInvalid") != undefined && this.get("nameInvalid").length == 0;
+        },
+
+        isValid: function() {
+          //improve these validation methods
+          this.validateName();
+          this.validateEmail();
+          return this.isEmailValid() && this.isNameValid();
+        },
+
+        validateEmail: function() {
+          if (!this.get("email")) {
+            this.set("emailInvalid", "Please fill out your email.");
+          } else {
+            var filter = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+            if (String(this.get("email")).search (filter) == -1) {
+              this.set("emailInvalid", "Invalid email.");
+            } else {
+              this.set("emailInvalid", "");
+            }
+          }
+        },
+
+        isEmailValid: function() {
+          return this.get("emailInvalid") != undefined && this.get("emailInvalid").length == 0;
         },
 
         fetchByEmail: function(email, options) {

@@ -18,9 +18,20 @@ block content
     <div class="row">
       <h2>Login</h2>
       <form>
-        <p>Fill out your name and email to start the quiz.</p>
-        <label>Name<input type="text" id="name"/></label>
-        <label>Email<input type="text" id="email"/></label>
+        <fieldset>
+          <legend>Fill out your name and email to start the quiz.</legend>
+          
+          <label>Name
+            <input type="text" id="name" class="error"/>
+            <small class="error" id="nameInvalid"></small>
+          </label>
+
+          <label>Email
+            <input type="text" id="email" class="error"/>
+            <small class="error" id="emailInvalid"></small>
+          </label>
+
+        </fieldset>
       </form>
       <a id="start" class="button">Start</a>
     </div>
