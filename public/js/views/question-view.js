@@ -16,12 +16,12 @@ app.Views = app.Views || {};
                 initialize: function (container) {
                         var question1 = new app.models.Question({
                                 id: 1,
-                                description: "Qual a capital do Brasil?",
+                                description: "What are the two biggest cities from Brazil?",
                                 optionns: new app.collections.Options([ 
                                         new app.models.Option({
                                                 id:1,
                                                 description: "São Paulo",
-                                                rightAnswer: false
+                                                rightAnswer: true
                                         }),
                                         new app.models.Option({
                                                 id:2,
