@@ -14,7 +14,7 @@ block content
   section
     section#quizmain
 
-  script#user-template(type="text/template").
+  script#user-template(type="text/x-handlebars-template").
     <div class="row">
       <h2>Login</h2>
       <form>
@@ -36,16 +36,16 @@ block content
       <a id="start" class="button">Start</a>
     </div>
 
-  script#question-template(type="text/template").
+  script#question-template(type="text/x-handlebars-template").
     <div class="row">
-      <h2>Question <%=currentQuestionIndex%> </h2>
+      <h2>Question {{currentQuestionIndex}} </h2>
       <div>
-        <p><%= description %></p>
-        <% _.each(optionns.models, function(option) { %>
-          <label class="option" id="<%=option.get('id')%>">
-            <input type="checkbox"/><%=option.get("description")%>
+        <p>{{description}}></p>
+        {{#each optionns}}
+          <label class="option" id="{{id}}">
+            <input type="checkbox"/>{{description}}
           </label>
-        <% }); %>
+        {{/each}}
       </div>
       <div>
         <button id="back" class="button alert">Back</button>

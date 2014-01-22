@@ -7,8 +7,6 @@ app.Views = app.Views || {};
 
         app.Views.User = Backbone.View.extend({
 
-                userFormTemplate: _.template($('#user-template').html()),
-
                 events: {
                         'click #start': 'start',
                 },
@@ -30,7 +28,6 @@ app.Views = app.Views || {};
                                 },
                                 updateView: true
                         }
-                        
                 },
 
                 initialize: function (options) {
@@ -38,7 +35,7 @@ app.Views = app.Views || {};
                 },
 
                 render: function () {
-                        this.$el.html(this.userFormTemplate);
+                        this.$el.html($('#user-template').html());
                         this.container.html(this.$el);
 
                         this.stickit();

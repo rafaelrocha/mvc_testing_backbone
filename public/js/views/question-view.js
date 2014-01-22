@@ -76,11 +76,12 @@ app.Views = app.Views || {};
             this.user = options.user;
             this.currentQuestionIndex = options.questionId;
 
-            var data = this.questions.at(this.currentQuestionIndex).toJSON();
+            var question = this.questions.at(this.currentQuestionIndex);
             data.currentQuestionIndex = this.currentQuestionIndex + 1
 
-            var template = _.template($('#question-template').html(), data);
-            this.$el.html(template);
+
+            var template = Handlebars.compile($('#question-template').html());
+            this.$el.html(template(question));
 
             this.container.html(this.$el);
             this.navigateButtonsVisibility();
