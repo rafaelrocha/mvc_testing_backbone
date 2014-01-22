@@ -5,7 +5,7 @@ app.Views = app.Views || {};
 (function ($) {
         'use strict';
 
-        app.Views.QuizApp = Backbone.View.extend({
+        app.Views.User = Backbone.View.extend({
 
                 userFormTemplate: _.template($('#user-template').html()),
 

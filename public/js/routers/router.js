@@ -34,7 +34,7 @@ var app = app || {};
       userModel = new app.models.User({}); //restart user state
       quizView = new app.Views.Question(quizMainContainer); //restart quizview state  
       
-      showView(new app.Views.QuizApp({
+      showView(new app.Views.User({
         model: userModel,
         container: quizMainContainer
       }));
