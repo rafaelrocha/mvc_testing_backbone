@@ -1,7 +1,11 @@
-/*global Backbone */
-var app = app || {};
-
-(function () {
+define([
+  'jquery',
+  'backbone',
+  'models/user',
+  'views/user-view',
+  'views/question-view'
+],
+function ($, Backbone, User, UserView, QuestionView) {
   'use strict';
 
   var routerManager = function() {
@@ -10,8 +14,8 @@ var app = app || {};
     var quizMainContainer = $("#quizmain");
     var currentView;
 
-    var userModel = new app.models.User({});
-    var quizView = new app.Views.Question(quizMainContainer);
+    var userModel = new User({});
+    var quizView = new QuestionView(quizMainContainer);
 
     that.routes = {
       '': 'index',
@@ -31,34 +35,31 @@ var app = app || {};
     }
     
     that.index = function() {
-      userModel = new app.models.User({}); //restart user state
-      quizView = new app.Views.Question(quizMainContainer); //restart quizview state  
+      userModel = new User({}); //restart user state
+      quizView = new QuestionView(quizMainContainer); //restart quizview state  
       
-      showView(new app.Views.User({
+      showView(new UserView({
         model: userModel,
         container: quizMainContainer
       }));
     }
 
     that.question = function(id) {
-      showView(quizView, {
-        user: userModel,
-        questionId: Number.valueOf()(id)
-      });
+       showView(quizView, {
+         user: userModel,
+         questionId: Number.valueOf()(id)
+       });
     }
 
     that.result = function() {
-      showView(new app.Views.Result({
-        container: quizMainContainer,
-        user: userModel
-      }));
+    //   showView(new app.Views.Result({
+    //     container: quizMainContainer,
+    //     user: userModel
+    //   }));
     }
 
     return that;
   }
 
-  app.Router = Backbone.Router.extend(routerManager())
-
-  app.quizRouter = new app.Router;
-  Backbone.history.start();
-})();
+  return Backbone.Router.extend(routerManager());;
+});

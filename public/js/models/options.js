@@ -1,12 +1,13 @@
-/*global Backbone */
-var app = app || {};
-app.collections = app.collections || {};
-
-(function () {
+define([
+	'backbone',
+	'models/option'
+],
+function (Backbone, Option) {
   'use strict';
 
-  app.collections.Options = Backbone.Collection.extend({
-	  model: app.models.Option
+  var Options = Backbone.Collection.extend({
+	  model: Option
 	});
 
-})();
+	return Options;  
+});

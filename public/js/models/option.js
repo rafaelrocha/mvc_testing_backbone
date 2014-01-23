@@ -1,11 +1,10 @@
-/*global Backbone */
-var app = app || {};
-app.models = app.models || {};
-
-(function () {
+define([
+  'backbone'
+],
+function (Backbone) {
   'use strict';
 
-  app.models.Option = Backbone.Model.extend({
+  var Option = Backbone.Model.extend({
     defaults: {
       description: 'option 1',
       rightAnswer: false,
@@ -17,4 +16,5 @@ app.models = app.models || {};
     }
   });
 
-})();
+  return Option;
+});

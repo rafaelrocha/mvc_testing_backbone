@@ -1,18 +1,19 @@
-/*global Backbone */
-var app = app || {};
-app.models = app.models || {};
-
-(function () {
+define([
+  'backbone',
+  'models/question',
+  'models/questions'
+],
+function (Backbone, Question, Questions) {
   'use strict';
 
-	app.models.User = Backbone.Model.extend({
+	var User = Backbone.Model.extend({
 		urlRoot: "http://localhost:4000/users",
 
         initialize: function(data) {
             this.set({
                   name: data.name || '',
                   email: data.email || '',
-                  answers: new app.collections.Questions()
+                  answers: new Questions()
             });
 
             this.on('change:name', this.validateName, this);
@@ -76,10 +77,10 @@ app.models = app.models || {};
               var that = this;
 
               _.each(response.answers, function(answer) {
-                var answerModel = new app.models.Question({description: answer.description});
+                var answerModel = new Question({description: answer.description});
                
                 _.each(answer.optionns, function(option) {
-                  answerModel.get("optionns").push(new app.models.Option(option));
+                  answerModel.get("optionns").push(new Option(option));
                 })
                
                 that.get("answers").push(answerModel);
@@ -89,4 +90,5 @@ app.models = app.models || {};
         }
   });
 
-})();
+  return User;
+});

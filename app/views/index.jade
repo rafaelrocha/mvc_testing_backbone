@@ -38,9 +38,9 @@ block content
 
   script#question-template(type="text/x-handlebars-template").
     <div class="row">
-      <h2>Question {{currentQuestionIndex}} </h2>
+      <h2>Question {{id}} </h2>
       <div>
-        <p>{{description}}></p>
+        <p> {{description}} </p>
         {{#each optionns}}
           <label class="option" id="{{id}}">
             <input type="checkbox"/>{{description}}

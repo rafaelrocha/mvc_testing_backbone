@@ -1,12 +1,8 @@
-/*global $ */
-/*jshint unused:false */
-var app = app || {};
-var ENTER_KEY = 13;
-var ESC_KEY = 27;
+requirejs(['jquery', 'backbone', "foundation", "routers/router"], 
 
-$(function () {
-  'use strict';
-
+function($, Backbone, a, Router) {
   $(document).foundation();
-  window.App = app;
+  
+  var Router = new Router();
+  Backbone.history.start();
 });

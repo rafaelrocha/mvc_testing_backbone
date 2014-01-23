@@ -1,11 +1,12 @@
-/*global Backbone, jQuery, _, ENTER_KEY */
-var app = app || {};
-app.Views = app.Views || {};
-
-(function ($) {
+define([
+    'jquery', 
+    'backbone',
+    'backbone.stickit'
+],
+function ($, Backbone) {
         'use strict';
 
-        app.Views.User = Backbone.View.extend({
+        var UserView = Backbone.View.extend({
 
                 events: {
                         'click #start': 'start',
@@ -48,9 +49,9 @@ app.Views = app.Views || {};
                                 that.model.fetchByEmail(that.model.get("email"), {
                                         success: function() {
                                                 if (that.model.alreadyAnsweredTheQuiz()) {
-                                                        app.quizRouter.navigate("result", true);
+                                                        Backbone.Router.prototype.navigate("result", true);
                                                 } else {
-                                                        app.quizRouter.navigate("question/q0", true);
+                                                        Backbone.Router.prototype.navigate("question/q0", true);
                                                 }
                                         },
                                         error: function() {
@@ -60,4 +61,6 @@ app.Views = app.Views || {};
                         }
                 }
         });
-})(jQuery);
+
+        return UserView;
+});

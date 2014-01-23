@@ -1,15 +1,15 @@
-/*global Backbone */
-var app = app || {};
-app.models = app.models || {};
-
-(function () {
+define([
+  'backbone',
+  'models/options'
+],
+function (Backbone, Options) {
   'use strict';
 
-  app.models.Question = Backbone.Model.extend({
+  var Question = Backbone.Model.extend({
     initialize: function(data) {
       this.set({
         description: data.description || '',
-        optionns: data.optionns || new app.collections.Questions()
+        optionns: data.optionns || new Options()
       });
     },
 
@@ -29,4 +29,6 @@ app.models = app.models || {};
 
   });
 
-})();
+  return Question;
+
+});

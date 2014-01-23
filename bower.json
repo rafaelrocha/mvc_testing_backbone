@@ -9,6 +9,7 @@
         "todomvc-common": "~0.1.4",
         "backbone.handlebars": "0.2.0",
         "backbone.localStorage": "~1.1.0",
+        "requirejs": "2.1.10",
         "foundation": "5.0.2",
         "backbone.stickit": "0.7.0"
     }
