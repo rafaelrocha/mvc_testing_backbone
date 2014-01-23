@@ -3,9 +3,10 @@ define([
   'backbone',
   'models/user',
   'views/user-view',
-  'views/question-view'
+  'views/question-view',
+  'views/result-view'
 ],
-function ($, Backbone, User, UserView, QuestionView) {
+function ($, Backbone, User, UserView, QuestionView, ResultView) {
   'use strict';
 
   var routerManager = function() {
@@ -52,10 +53,10 @@ function ($, Backbone, User, UserView, QuestionView) {
     }
 
     that.result = function() {
-    //   showView(new app.Views.Result({
-    //     container: quizMainContainer,
-    //     user: userModel
-    //   }));
+       showView(new ResultView({
+         container: quizMainContainer,
+         user: userModel
+       }));
     }
 
     return that;

@@ -131,6 +131,7 @@ function ($, Backbone, Handlebars, BackboneHandlerbars, Question, Questions, Opt
         },
 
         syncModelWithUserInputs: function() {
+            //TODO replace this code to use twoway databiding with stickit
             var that = this;
             var optionsElem = $('.option');
             optionsElem.each(function(index, optionElem) {
@@ -143,6 +144,7 @@ function ($, Backbone, Handlebars, BackboneHandlerbars, Question, Questions, Opt
         },
 
         syncUserInputsWithModel: function() {
+            //TODO replace this code to use twoway databiding with stickit
             var question = this.questions.at(this.currentQuestionIndex);
             question.get("optionns").each(function(option) {
                 var optionElem = $('#' + option.get("id") + ' input');

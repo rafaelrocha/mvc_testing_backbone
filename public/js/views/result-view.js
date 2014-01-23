@@ -1,16 +1,11 @@
-/*global Backbone, jQuery, _, ENTER_KEY */
-var app = app || {};
-app.Views = app.Views || {};
-
-(function ($) {
+define([
+        'jquery',
+        'backbone'
+        ],
+function ($, Backbone) {
         'use strict';
 
-        app.Views.Result = Backbone.View.extend({
-
-                resultTemplate: _.template($('#result-template').html()),
-
-                events: {
-                },
+        var ResultView = Backbone.View.extend({
 
                 initialize: function (options) {
                         this.container = options.container;
@@ -30,4 +25,6 @@ app.Views = app.Views || {};
                         console.log("start")
                 }
         });
-})(jQuery);
+
+        return ResultView;
+});
