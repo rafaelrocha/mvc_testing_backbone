@@ -1,102 +1,73 @@
-'use strict';
-
 // Karma configuration
-// Generated on Sat Oct 05 2013 22:00:14 GMT+0700 (ICT)
+// Generated on Fri Jan 24 2014 10:11:15 GMT-0200 (E. South America Daylight Time)
 
 module.exports = function(config) {
-    config.set({
+  config.set({
 
-        // base path, that will be used to resolve files and exclude
-        basePath: '../../',
-
-
-        // frameworks to use
-        frameworks: ['jasmine'],
+    // base path, that will be used to resolve files and exclude
+    basePath: '../../',
 
 
-        // list of files / patterns to load in the browser
-        files: [
-            'public/lib/angular/angular.js',
-            'public/lib/angular-mocks/angular-mocks.js',
-            'public/lib/angular-cookies/angular-cookies.js',
-            'public/lib/angular-resource/angular-resource.js',
-            'public/lib/angular-route/angular-route.js',
-            'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-            'public/lib/angular-bootstrap/ui-bootstrap.js',
-            'public/lib/angular-ui-utils/modules/route/route.js',
-            'public/js/app.js',
-            'public/js/config.js',
-            'public/js/directives.js',
-            'public/js/filters.js',
-            'public/js/services/global.js',
-            'public/js/services/articles.js',
-            'public/js/controllers/articles.js',
-            'public/js/controllers/index.js',
-            'public/js/controllers/header.js',
-            'public/js/init.js',
-            'test/karma/unit/**/*.js'
-        ],
+    // frameworks to use
+    frameworks: ['jasmine', 'requirejs'],
 
 
-        // list of files to exclude
-        exclude: [
+    // list of files / patterns to load in the browser
+    files: [
+        {pattern: 'public/lib/jquery/jquery.js', included: false},
+        {pattern: 'public/lib/underscore/underscore.js', included: false},
+        {pattern: 'public/lib/backbone/backbone.js', included: false},
 
-        ],
-
-
-        // test results reporter to use
-        // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-        //reporters: ['progress'],
-        reporters: ['progress', 'coverage'],
-
-        // coverage
-        preprocessors: {
-            // source files, that you wanna generate coverage for
-            // do not include tests or libraries
-            // (these files will be instrumented by Istanbul)
-            'public/js/controllers/*.js': ['coverage'],
-            'public/js/services/*.js': ['coverage']
-        },
-
-        coverageReporter: {
-            type: 'html',
-            dir: 'test/coverage/'
-        },
-
-        // web server port
-        port: 9876,
+        'test/karma/test-main.js',
+        {pattern: 'test/karma/unit/public/models/test-spec.js', included: false}
+    ],
 
 
-        // enable / disable colors in the output (reporters and logs)
-        colors: true,
+    // list of files to exclude
+    exclude: [
+      
+    ],
 
 
-        // level of logging
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+    // test results reporter to use
+    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+    reporters: ['progress'],
 
 
-        // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+    // web server port
+    port: 9876,
 
 
-        // Start these browsers, currently available:
-        // - Chrome
-        // - ChromeCanary
-        // - Firefox
-        // - Opera
-        // - Safari (only Mac)
-        // - PhantomJS
-        // - IE (only Windows)
-        browsers: ['PhantomJS'],
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
 
 
-        // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000,
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
 
 
-        // Continuous Integration mode
-        // if true, it capture browsers, run tests and exit
-        singleRun: true
-    });
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera (has to be installed with `npm install karma-opera-launcher`)
+    // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
+    // - PhantomJS
+    // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
+    browsers: ['Chrome'],
+
+
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout: 60000,
+
+
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun: false
+  });
 };
