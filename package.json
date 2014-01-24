@@ -46,7 +46,7 @@
     "karma-requirejs": "~0.1.0",
     "should": "~2.1.1",
     "grunt-concurrent": "~0.4.2",
-    "grunt-karma": "~0.6.2",
+    "grunt-karma": "~0.7.1",
     "karma-coffee-preprocessor": "~0.1.2",
     "supertest": "~0.8.2",
     "karma-phantomjs-launcher": "~0.1.1",
