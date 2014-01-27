@@ -1,4 +1,5 @@
-AC Challenge - Backbone
+# AC Challenge - BackboneJS [![Build Status](https://api.travis-ci.org/rafaelrocha/ac_challenge_backbonejs.png)](https://api.travis-ci.org/rafaelrocha/ac_challenge_backbonejs.png)
+
 
 Setting development environment up
 ==================================
