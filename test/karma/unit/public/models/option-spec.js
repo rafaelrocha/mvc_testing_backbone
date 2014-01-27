@@ -1,9 +1,9 @@
 define(['underscore', 'models/option'], function(_, Option) {
 
-  describe('Option model', function() {
+  describe('When option', function() {
 
-  	describe('when the right answer is true and the user answered true', function() {
-  		it('should return true', function() {
+  	describe('right answer is true and the user answered true', function() {
+  		it('isCorrect should return true', function() {
 	      var option = new Option({
 	      	rightAnswer: true,
       		answered: true
@@ -13,6 +13,16 @@ define(['underscore', 'models/option'], function(_, Option) {
 	    });
   	});
 
+    describe('right answer is true and the user answered false', function() {
+      it('isCorrect should return false', function() {
+        var option = new Option({
+          rightAnswer: true,
+          answered: false
+        });
+
+        expect(option.isCorrect()).toEqual(false);
+      });
+    });
   });
 
 });

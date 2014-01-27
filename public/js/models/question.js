@@ -16,11 +16,15 @@ function (Backbone, Options) {
     correctAnswersInPercentage: function() {
     	var optionns = this.get("optionns");
     	var quantityOfOptions = optionns.length;
-    	var rightAnswersCount = 0;
+      var rightAnswersCount = 0;
+
+      if (quantityOfOptions === 0) {
+        return undefined;
+      }
     	
     	_.each(optionns.models, function(option) {
     		if (option.isCorrect()) {
-    			rightAnswersCount = rightAnswersCount + 1	
+    			rightAnswersCount = rightAnswersCount + 1;
     		}
     	})
 
