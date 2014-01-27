@@ -22,7 +22,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   config.vm.provision "shell",
-    inline: "npm install -g grunt-cli"
-
-
+    inline: "
+      npm install -g grunt-cli
+      cd /
+      sudo mkdir -p data/db
+      nohup mongod &
+    "
 end
