@@ -17,9 +17,9 @@ module.exports = function(config) {
         {pattern: 'public/lib/jquery/jquery.js', included: false},
         {pattern: 'public/lib/underscore/underscore.js', included: false},
         {pattern: 'public/lib/backbone/backbone.js', included: false},
-
+        {pattern: 'public/js/**/*.js', included: false},
         'test/karma/test-main.js',
-        {pattern: 'test/karma/unit/public/models/test-spec.js', included: false}
+        {pattern: 'test/karma/unit/**/*-spec.js', included: false}
     ],
 
 
