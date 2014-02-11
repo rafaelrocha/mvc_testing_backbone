@@ -14,6 +14,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, :path => "cookbooks/fix-ubuntu-repo-issue.sh"
 
+  #workaround over mongodb cookbook which was not finding the default value for logpath
+  chef.json = {
+   "mongodb" => {
+     "logpath" => "/var/log/mongodb"
+   }
+  }
+
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "apt"
     chef.add_recipe "nodejs"
